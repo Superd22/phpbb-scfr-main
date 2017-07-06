@@ -1,0 +1,19 @@
+services:
+  scfr.main.listener:
+    class: scfr\main\event\listener
+    arguments:
+      - '@template'
+      - '@user'
+      - '@dbal.conn'
+    tags:
+      - { name: event.listener }
+
+  scfr.main.guild:
+    class: scfr\main\ambassade\Guild
+    arguments:
+      - '@dbal.conn'
+
+  scfr.main.topic:
+    class: scfr\main\controller\Topic
+    arguments:
+      - '@dbal.conn'
