@@ -38,7 +38,31 @@ class listener implements EventSubscriberInterface
         'core.obtain_users_online_string_modify' => 'view_online',
         'core.viewtopic_assign_template_vars_before' => 'handle_viewtopic',
         'core.viewforum_get_topic_data' => 'meta_viewforum',
+        'core.acp_manage_group_initialise_data' => 'acp_manage_group_initialise_data',
+        'core.acp_manage_group_display_form' => 'acp_manage_group_display_form',
+        'core.acp_manage_forums_update_data_after' => 'acp_manage_forums_update_data_after',
+        'core.acp_manage_forums_initialise_data' => 'acp_manage_forums_initialise_data'
         );
+    }
+
+    public function acp_manage_forums_initialise_data($event) {
+        $acp_group = new \scfr\main\controller\adm\GroupPartner();
+        $acp_group->acp_manage_forums_initialise_data($event);
+    }
+
+    public function acp_manage_forums_update_data_after($event) {
+        $acp_group = new \scfr\main\controller\adm\GroupPartner();
+        $acp_group->acp_manage_forums_update_data_after($event);
+    }
+
+    public function acp_manage_group_display_form($event) {
+        $acp_group = new \scfr\main\controller\adm\GroupPartner();
+        $acp_group->acp_manage_group_display_form($event);
+    }
+
+    public function acp_manage_group_initialise_data($event) {
+        $acp_group = new \scfr\main\controller\adm\GroupPartner();
+        $acp_group->acp_manage_group_initialise_data($event);
     }
     
     public function view_online($event) {
@@ -72,6 +96,9 @@ class listener implements EventSubscriberInterface
         );
         
         $this->template->assign_vars($metas);
+
+        $group = new \scfr\main\controller\GroupPartner();
+        $group->viewforum_get_topic_data($event);
     }
     
     /**

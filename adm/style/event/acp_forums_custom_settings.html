@@ -1,0 +1,17 @@
+<fieldset>
+    <legend>Paramètres SC.FR</legend>
+    <dl>
+        <dt><label for="scfr_forum_partner">Forum partenaire&nbsp;:</label><br />
+            <span>Un forum partenaire doit être lié à un groupe partenaire, et s'affiche de façon "riche" en mettant en valeur le 
+            travail de ces derniers.</span></dt>
+        <dd>
+            <select id="scfr_forum_partner" name="scfr_forum_partner">
+                <option value="-1">Forum normal</option>
+                <!-- BEGIN scfr_partners -->
+                <option value="{scfr_partners.group_id}"<!-- IF scfr_partners.selected --> selected="selected"<!-- ENDIF -->>{scfr_partners.group_name}</option>
+                <!-- END scfr_partners -->
+            </select>
+        </dd>
+    </dl>
+
+</fieldset>
