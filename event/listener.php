@@ -114,7 +114,7 @@ class listener implements EventSubscriberInterface
         * Check if we're in a forum that supports html news
         * @todo check this via acp
         */
-        if($event['forum_id'] == 2 || $event['forum_id'] == 206) {
+        if($event['forum_id'] == 2 || $event['forum_id'] == 43 || $event['forum_id'] == 206) {
             $sql = "SELECT post_id FROM wp_postmeta WHERE meta_key='_wphpbb_cross_topic_id' AND meta_value = {$event['topic_id']}";
             $result = $this->db->sql_query($sql);
             $row = $this->db->sql_fetchrow($result);
