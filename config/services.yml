@@ -17,3 +17,8 @@ services:
     class: scfr\main\controller\Topic
     arguments:
       - '@dbal.conn'
+
+  scfr.main.org:
+    class: scfr\main\controller\Org
+    arguments:
+      - '@scfr.phpbbJsonTemplate.helper.api'

@@ -1,0 +1,3 @@
+cfr.main.api.org:
+    path: scfr/main/org/
+    defaults: { _controller: scfr.main.org:handle, mode: "register" }

@@ -61,22 +61,6 @@ class Guild {
     }
   }
 
-  private function update_topic($_newtopic) {
-
-  }
-
-  private function update_ssid($_newSSID) {
-
-  }
-
-  private function register_topic() {
-
-  }
-
-  private function unregister_topic() {
-
-  }
-
   public function get_rsi_api_info() {
     if($this->SSID) {
       if(!$this->RSI) {

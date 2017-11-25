@@ -27,6 +27,8 @@ class Topic {
       $first_reply = $event["topic_data"]["topic_first_post_id"];
       $guild->__topic_init($event["row"]["topic_id"]);
 
+      //var_dump();
+
       $templates["GUILD_JSON"] = json_encode(false);
       if($guild->is_registerd) {
         $templates["TOPIC_IS_REGISTERED_GUILD"] = true;
@@ -35,6 +37,10 @@ class Topic {
 
         $templates["GUILD_JSON"] = json_encode($guild->RSI);
       }
+
+
+      if($templates['GUILD_BACKGROUND']) $templates['CUSTOM_BACKGROUND'] = $templates['GUILD_BACKGROUND'];
+
 
       $templates["TOPIC_IS_GUILD"] = true;
       $templates["GUILD_TOPIC_ID"] = $event["topic_data"]["topic_id"];
@@ -108,7 +114,13 @@ class Topic {
     $guild->__topic_init($event["topic_row"]["TOPIC_ID"]);
     if($guild->is_registerd) {
       $cache = $event["topic_row"];
-      $cache["S_TOPIC_GUILD_LOGO"] = $guild->get_logo();
+
+      $cache["SCFR_GUILD_LOGO"] = $guild->get_logo();
+      $cache["SCFR_GUILD_IS"] = $guild->is_registerd;
+      $cache["SCFR_GUILD_RECRUITING"] = $guild->RSI->recruiting === "Yes" ? true : false;
+      $cache["SCFR_GUILD_MEMBERS"] = (integer) $guild->RSI->member_count;
+      $cache["SCFR_GUILD_COMMITMENT"] = $guild->RSI->commitment === "Regular" ? 0 : ($guild->RSI->commitment === "Hardcore" ? 1 : 2) ;
+      
       $event["topic_row"] = $cache;
     }
   }
